@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useQuery } from '@apollo/client/react';
+import { GET_POKEMONS } from './graphql/queries';
+import type { GetPokemonsData, Pokemon } from './types/pokemon';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { data, loading, error } = useQuery<GetPokemonsData>(GET_POKEMONS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Pokémon List (First 10)</h1>
+      <ul>
+        {data?.pokemon_v2_pokemon.map((poke: Pokemon) => (
+          <li key={poke.id}>
+            {poke.name} - Types:{" "}
+            {poke.pokemontypes.map((t) => t.type.name).join(", ")}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
