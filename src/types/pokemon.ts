@@ -11,5 +11,10 @@ export interface Pokemon {
 }
 
 export interface GetPokemonsData {
-  pokemon_v2_pokemon: Pokemon[];
+  pokemon_list: Pokemon[];
+  total_pokemons: {
+    aggregate: {
+      count: number;
+    };
+  };
 }
