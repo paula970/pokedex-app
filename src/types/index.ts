@@ -34,6 +34,9 @@ export interface PokemonDetail extends Pokemon {
         name: string;
       };
     }>;
+    generation: {
+      name: string;
+    };
   };
   pokemonstats: Array<{
     base_stat: number;

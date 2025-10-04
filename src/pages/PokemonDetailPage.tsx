@@ -40,6 +40,7 @@ const PokemonDetailPage: React.FC = () => {
   const pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
   const pokemonImageUrl = pokemon.pokemonsprites[0]?.sprites;
   const description = pokemon.pokemonspecy?.pokemonspeciesflavortexts?.[0]?.flavor_text;
+  const generationName = pokemon.pokemonspecy?.generation?.name;
 
   // Create About Section
   const aboutSection = (
@@ -68,6 +69,7 @@ const PokemonDetailPage: React.FC = () => {
       pokemonNumber={pokemonNumber}
       pokemonImageUrl={pokemonImageUrl}
       backgroundColor={backgroundColor}
+      generationName={generationName}
       aboutSection={aboutSection}
       statsSection={statsSection}
     />

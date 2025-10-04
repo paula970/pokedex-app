@@ -46,6 +46,9 @@ export const GET_POKEMON_DETAIL = gql`
             name
           }
         }
+        generation {
+          name
+        }
       }
       pokemonstats {
         base_stat
