@@ -5,8 +5,27 @@ interface FavoritesState {
   favoritePokemons: Pokemon[];
 }
 
+// Helper functions for localStorage
+const loadFavoritesFromStorage = (): Pokemon[] => {
+  try {
+    const stored = localStorage.getItem('pokemon-favorites');
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error('Error loading favorites from localStorage:', error);
+    return [];
+  }
+};
+
+const saveFavoritesToStorage = (favorites: Pokemon[]): void => {
+  try {
+    localStorage.setItem('pokemon-favorites', JSON.stringify(favorites));
+  } catch (error) {
+    console.error('Error saving favorites to localStorage:', error);
+  }
+};
+
 const initialState: FavoritesState = {
-  favoritePokemons: [],
+  favoritePokemons: loadFavoritesFromStorage(),
 };
 
 const favoritesSlice = createSlice({
@@ -19,14 +38,20 @@ const favoritesSlice = createSlice({
       
       if (!exists) {
         state.favoritePokemons.push(pokemon);
+        // Save to localStorage
+        saveFavoritesToStorage(state.favoritePokemons);
       }
     },
     removeFromFavorites: (state, action: PayloadAction<number>) => {
       const pokemonId = action.payload;
       state.favoritePokemons = state.favoritePokemons.filter(p => p.id !== pokemonId);
+      // Save to localStorage
+      saveFavoritesToStorage(state.favoritePokemons);
     },
     clearFavorites: (state) => {
       state.favoritePokemons = [];
+      // Save to localStorage
+      saveFavoritesToStorage(state.favoritePokemons);
     },
   },
 });
