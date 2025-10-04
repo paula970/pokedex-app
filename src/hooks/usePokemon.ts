@@ -2,14 +2,24 @@ import { useCallback, useMemo, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client/react';
 import { GET_POKEMONS } from '../graphql/queries';
 import type { GetPokemonsData } from '../types';
-import { usePokemonContext } from './usePokemonContext';
+import { useAppDispatch, useAppSelector } from './useRedux';
+import { 
+  setLoading,
+  setError,
+  addPokemons,
+  setSearch as setSearchAction,
+  setSelectedType as setSelectedTypeAction,
+  setSortBy as setSortByAction,
+  setHasMore,
+  resetPokemons
+} from '../store/pokemonSlice';
 import { buildSearchFilter, buildTypeFilter, combineFilters, buildOrderBy } from '../utils/queryHelpers';
 
 const PAGE_SIZE = 20;
 
 export function usePokemon() {
-  const { state, dispatch } = usePokemonContext();
-  const { allPokemons, search, selectedType, sortBy, loading, error, hasMore } = state;
+  const dispatch = useAppDispatch();
+  const { allPokemons, search, selectedType, sortBy, loading, error, hasMore } = useAppSelector(state => state.pokemon);
 
   // Apollo query variables (memoized)
   const variables = useMemo(() => {
@@ -39,21 +49,21 @@ export function usePokemon() {
 
   // Update loading and error states
   useEffect(() => {
-    dispatch({ type: 'SET_LOADING', payload: queryLoading || loadMoreLoading });
+    dispatch(setLoading(queryLoading || loadMoreLoading));
   }, [queryLoading, loadMoreLoading, dispatch]);
 
   useEffect(() => {
-    dispatch({ type: 'SET_ERROR', payload: queryError?.message || null });
+    dispatch(setError(queryError?.message || null));
   }, [queryError, dispatch]);
 
   // Add new pokemon data when it arrives
   useEffect(() => {
     if (data && data.pokemon_list) {
-      dispatch({ type: 'ADD_POKEMONS', payload: data.pokemon_list });
+      dispatch(addPokemons(data.pokemon_list));
       
       const totalCount = data.total_pokemons?.aggregate?.count || 0;
       const currentCount = allPokemons.length + data.pokemon_list.length;
-      dispatch({ type: 'SET_HAS_MORE', payload: currentCount < totalCount });
+      dispatch(setHasMore(currentCount < totalCount));
     }
   }, [data, dispatch, allPokemons.length]);
 
@@ -81,16 +91,16 @@ export function usePokemon() {
       
       // Manually add the new pokemons to our state
       if (moreData?.pokemon_list) {
-        dispatch({ type: 'ADD_POKEMONS', payload: moreData.pokemon_list });
+        dispatch(addPokemons(moreData.pokemon_list));
         
         // Update hasMore based on total count
         const totalCount = moreData.total_pokemons?.aggregate?.count || 0;
         const newCount = allPokemons.length + moreData.pokemon_list.length;
-        dispatch({ type: 'SET_HAS_MORE', payload: newCount < totalCount });
+        dispatch(setHasMore(newCount < totalCount));
       }
     } catch (error) {
       console.error('Error loading more pokemons:', error);
-      dispatch({ type: 'SET_ERROR', payload: 'Error loading more pokémons' });
+      dispatch(setError('Error loading more pokémons'));
     }
   }, [loadMorePokemons, hasMore, loading, loadMoreLoading, allPokemons.length, sortBy, search, selectedType, dispatch]);
 
@@ -98,8 +108,8 @@ export function usePokemon() {
   const availableTypes = useMemo(() => {
     const typeSet = new Set<string>();
     
-    allPokemons.forEach(pokemon => {
-      pokemon.pokemontypes.forEach(pokemonType => {
+    allPokemons.forEach((pokemon) => {
+      pokemon.pokemontypes.forEach((pokemonType) => {
         typeSet.add(pokemonType.type.name);
       });
     });
@@ -113,23 +123,23 @@ export function usePokemon() {
 
   // Actions
   const setSearch = useCallback((value: string) => {
-    dispatch({ type: 'SET_SEARCH', payload: value });
+    dispatch(setSearchAction(value));
     // Reset pokemons to search in full database
-    dispatch({ type: 'RESET_POKEMONS' });
+    dispatch(resetPokemons());
   }, [dispatch]);
 
   const setSelectedType = useCallback((type: string) => {
-    dispatch({ type: 'SET_SELECTED_TYPE', payload: type });
+    dispatch(setSelectedTypeAction(type));
     // Reset pokemons to filter from full database
-    dispatch({ type: 'RESET_POKEMONS' });
+    dispatch(resetPokemons());
   }, [dispatch]);
 
   const setSortBy = useCallback((sort: 'name' | 'id') => {
     // Only reset if the sort actually changed
     if (sortBy !== sort) {
-      dispatch({ type: 'SET_SORT_BY', payload: sort });
+      dispatch(setSortByAction(sort));
       // Reset pokemon list AND offset to start fresh
-      dispatch({ type: 'RESET_POKEMONS' });
+      dispatch(resetPokemons());
     }
   }, [dispatch, sortBy]);
 

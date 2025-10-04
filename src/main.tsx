@@ -4,14 +4,15 @@ import './index.css'
 import App from './App.tsx'
 import { ApolloProvider } from '@apollo/client/react';
 import client from './api/apolloClient'
-import { PokemonProvider } from './context/PokemonContext'
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ApolloProvider client={client}>
-      <PokemonProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
         <App />
-      </PokemonProvider>
-    </ApolloProvider>
+      </ApolloProvider>
+    </Provider>
   </StrictMode>
 )
