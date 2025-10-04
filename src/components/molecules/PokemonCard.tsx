@@ -1,6 +1,6 @@
 import React from "react";
 import PokemonImage from "../atoms/PokemonImage";
-import type { Pokemon } from "../../types/pokemon";
+import type { Pokemon } from "../../types";
 
 interface PokemonCardProps {
   pokemon: Pokemon;

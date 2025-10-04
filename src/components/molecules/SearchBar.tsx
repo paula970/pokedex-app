@@ -1,20 +1,10 @@
 import React from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
+import { usePokemon } from "../../hooks/usePokemon";
 
-interface SearchBarProps {
-  search: string;
-  setSearch: (value: string) => void;
-  sortBy: "id" | "name";
-  setSortBy: (sort: "id" | "name") => void;
-}
-
-const SearchBar: React.FC<SearchBarProps> = ({
-  search,
-  setSearch,
-  sortBy,
-  setSortBy,
-}) => {
+const SearchBar: React.FC = () => {
+  const { search, setSearch, sortBy, setSortBy } = usePokemon();
   return (
     <div className="search-bar">
       <Input
