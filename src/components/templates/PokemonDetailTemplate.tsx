@@ -2,11 +2,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import pokeballBgIcon from '../../assets/icons/pokeball_bg.svg';
 
+// Generation icons
+import generationI from '../../assets/icons/generation-i.svg';
+import generationII from '../../assets/icons/generation-ii.svg';
+import generationIII from '../../assets/icons/generation-iii.svg';
+import generationIV from '../../assets/icons/generation-iv.svg';
+import generationV from '../../assets/icons/generation-v.svg';
+import generationVI from '../../assets/icons/generation-vi.svg';
+import generationVII from '../../assets/icons/generation-vii.svg';
+import generationVIII from '../../assets/icons/generation-viii.svg';
+import generationIX from '../../assets/icons/generation-ix.svg';
+
+const generationIcons: Record<string, string> = {
+  'generation-i': generationI,
+  'generation-ii': generationII,
+  'generation-iii': generationIII,
+  'generation-iv': generationIV,
+  'generation-v': generationV,
+  'generation-vi': generationVI,
+  'generation-vii': generationVII,
+  'generation-viii': generationVIII,
+  'generation-ix': generationIX,
+};
+
 interface PokemonDetailTemplateProps {
   pokemonName: string;
   pokemonNumber: string;
   pokemonImageUrl: string;
   backgroundColor: string;
+  generationName?: string;
   aboutSection: React.ReactNode;
   statsSection: React.ReactNode;
   className?: string;
@@ -17,6 +41,7 @@ const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
   pokemonNumber,
   pokemonImageUrl,
   backgroundColor,
+  generationName,
   aboutSection,
   statsSection,
   className = ''
@@ -40,7 +65,16 @@ const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
               <span className="back-arrow">←</span>
             </Link>
             <h1 className="pokemon-name">{pokemonName}</h1>
-            <span className="pokemon-number">#{pokemonNumber}</span>
+            <div className="pokemon-meta">
+              <span className="pokemon-number">#{pokemonNumber}</span>
+              {generationName && (
+                <img 
+                  src={generationIcons[generationName] || generationIcons['generation-i']}
+                  alt={`Generation ${generationName}`}
+                  className="pokemon-generation generation-icon"
+                />
+              )}
+            </div>
           </header>
 
           {/* Pokemon Image */}
