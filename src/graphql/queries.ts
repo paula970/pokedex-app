@@ -18,3 +18,46 @@ export const GET_POKEMONS = gql`
     }
   }
 `;
+
+export const GET_POKEMON_DETAIL = gql`
+  query GetPokemonDetail($id: Int!) {
+    pokemons: pokemon(where: {id: {_eq: $id}}) {
+      id
+      name
+      weight
+      height
+      pokemonsprites {
+        sprites(path: "other.official-artwork.front_default")
+      }
+      pokemonabilities {
+        ability {
+          name
+        }
+      }
+      pokemonspecy {
+        pokemonspeciesflavortexts(
+          limit: 1
+          order_by: {id: desc}
+          where: {language_id: {_eq: 9}}
+        ) {
+          flavor_text
+          version_id
+          version {
+            name
+          }
+        }
+      }
+      pokemonstats {
+        base_stat
+        stat {
+          name
+        }
+      }
+      pokemontypes {
+        type {
+          name
+        }
+      }
+    }
+  }
+`;
