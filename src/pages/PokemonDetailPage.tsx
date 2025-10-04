@@ -70,6 +70,7 @@ const PokemonDetailPage: React.FC = () => {
       pokemonImageUrl={pokemonImageUrl}
       backgroundColor={backgroundColor}
       generationName={generationName}
+      pokemon={pokemon}
       aboutSection={aboutSection}
       statsSection={statsSection}
     />

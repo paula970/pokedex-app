@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import pokeballBgIcon from '../../assets/icons/pokeball_bg.svg';
+import Button from '../atoms/Button';
+import { useFavorites } from '../../hooks/useFavorites';
 
 // Generation icons
 import generationI from '../../assets/icons/generation-i.svg';
@@ -25,12 +27,15 @@ const generationIcons: Record<string, string> = {
   'generation-ix': generationIX,
 };
 
+import type { Pokemon } from '../../types';
+
 interface PokemonDetailTemplateProps {
   pokemonName: string;
   pokemonNumber: string;
   pokemonImageUrl: string;
   backgroundColor: string;
   generationName?: string;
+  pokemon: Pokemon;
   aboutSection: React.ReactNode;
   statsSection: React.ReactNode;
   className?: string;
@@ -42,10 +47,18 @@ const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
   pokemonImageUrl,
   backgroundColor,
   generationName,
+  pokemon,
   aboutSection,
   statsSection,
   className = ''
 }) => {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(pokemon);
+  };
   return (
     <div className={`pokemon-detail-page ${className}`}>
       <div className="pokemon-detail-container">
@@ -66,14 +79,24 @@ const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
             </Link>
             <h1 className="pokemon-name">{pokemonName}</h1>
             <div className="pokemon-meta">
-              <span className="pokemon-number">#{pokemonNumber}</span>
-              {generationName && (
-                <img 
-                  src={generationIcons[generationName] || generationIcons['generation-i']}
-                  alt={`Generation ${generationName}`}
-                  className="pokemon-generation generation-icon"
-                />
-              )}
+              <div className="pokemon-info">
+                <span className="pokemon-number">#{pokemonNumber}</span>
+                {generationName && (
+                  <img 
+                    src={generationIcons[generationName] || generationIcons['generation-i']}
+                    alt={`Generation ${generationName}`}
+                    className="pokemon-generation generation-icon"
+                  />
+                )}
+              </div>
+              <Button 
+                onClick={handleFavoriteClick} 
+                className={`detail-favorite-button ${isFavorite(pokemon.id) ? 'favorite-active' : ''}`}
+                aria-label={isFavorite(pokemon.id) ? 'Remove from favorites' : 'Add to favorites'}
+                title={isFavorite(pokemon.id) ? 'Remove from favorites' : 'Add to favorites'}
+              >
+                {isFavorite(pokemon.id) ? '⭐' : '☆'}
+              </Button>
             </div>
           </header>
 
