@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# 🔥 Pokédex App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Pokédex built with React, Vite, Redux Toolkit, Apollo Client, and Atomic Design.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Live Demo
+**[View Demo](https://pokedex-app-six-lilac.vercel.app/)**
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔍 **List and search** Pokémon
+- 🏷️ **Filter by type** of Pokémon 
+- ❤️ **Persistent favorites** system
+- 📱 **Responsive design** for all devices
+- ♾️ **Infinite scroll** for smooth navigation
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** + TypeScript
+- **Redux Toolkit** for state management
+- **Apollo Client** + GraphQL
+- **Vite** as build tool
+- **Vitest** for testing (25 tests ✅)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔨 Architecture Decisions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Redux Toolkit** was chosen for its robustness and ease in handling global state (favorites, filters).
+- **Atomic Design** enables a modular UI that's easy to maintain and scale.
+- **Apollo Client** for efficient consumption of the GraphQL API.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/paula970/pokedex-app.git
+cd pokedex-app
+
+# Install dependencies
+npm install
+
+# Run in development
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📂 Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Following Brad Frost's **Atomic Design** methodology:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/          # React Components (Atomic Design)
+│   ├── atoms/          # 🔹 Basic elements (Button, Input)
+│   ├── molecules/      # 🔸 Compound components (SearchBar, Card)
+│   ├── organisms/      # 🔶 Complex sections (Grid, Header)
+│   └── templates/      # 📄 Page layouts
+├── pages/              # 📱 Complete app pages
+├── hooks/              # 🎣 Custom hooks
+├── store/              # 🗃️ Redux state
+├── utils/              # 🛠️ Utility functions
+└── styles/             # 🎨 CSS styles per component
+```
+
+### 🏗️ Atomic Design
+
+**Atoms** → **Molecules** → **Organisms** → **Templates** → **Pages**
+
+- **🔹 Atoms**: Reusable basic UI elements (`Button`, `Input`)
+- **🔸 Molecules**: Simple combinations of atoms (`SearchBar`, `PokemonCard`) 
+- **🔶 Organisms**: Complex sections (`PokemonGrid`, `Header`)
+- **📄 Templates**: Page structure and layout (`MainTemplate`)
+- **📱 Pages**: Complete instances with real data (`HomePage`)
+
+## 🧪 Testing
+
+25 unit tests covering:
+- ✅ Input validation (14 tests)
+- ✅ Button components (5 tests) 
+- ✅ Input components (6 tests)
+
+```bash
+npm test        # Run tests
+npm run build   # Production build
+```
+
+## 👩‍💻 Author
+
+Paula — [@paula970](https://github.com/paula970)
