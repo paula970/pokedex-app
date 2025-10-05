@@ -1,0 +1,67 @@
+/* ===== BUTTON COMPONENT ===== */
+.button {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+/* Default circular button styles (for favorite buttons, etc.) */
+.button:not(.favorites-active):not(.favorites-inactive) {
+  background: #ededed;
+  border-radius: var(--radius-full);
+  width: var(--spacing-xxl);
+  height: var(--spacing-xxl);
+  font-size: 1.2rem;
+}
+
+.button:not(.favorites-active):not(.favorites-inactive):hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.button-icon {
+  margin-right: var(--spacing-xs);
+}
+
+/* ===== FAVORITE BUTTON STYLES ===== */
+.favorite-button {
+  background: none;
+  border: none;
+  font-size: var(--spacing-md);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.favorite-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.favorite-button.favorite-active,
+.detail-favorite-button.favorite-active {
+  animation: heartBeat 0.6s ease-in-out;
+}
+
+/* Specific styles for detail page favorite button */
+.detail-favorite-button {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  font-size: 1.5rem !important;
+  width: var(--spacing-xxl) !important;
+  height: var(--spacing-xxl) !important;
+}
+
+.detail-favorite-button:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1);
+}

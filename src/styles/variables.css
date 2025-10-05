@@ -1,0 +1,54 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Typography */
+  --font-family: 'Poppins', Arial, sans-serif;
+  
+  /* Text Styles - Headers */
+  --text-headline-bold: bold 24px/32px var(--font-family);
+  --text-subtitle-1-bold: bold 14px/16px var(--font-family);
+  --text-subtitle-2-bold: bold 12px/16px var(--font-family);
+  --text-subtitle-3-bold: bold 10px/16px var(--font-family);
+  
+  /* Text Styles - Body */
+  --text-body-1-regular: normal 14px/16px var(--font-family);
+  --text-body-2-regular: normal 12px/16px var(--font-family);
+  --text-body-3-regular: normal 10px/16px var(--font-family);
+  --text-caption-regular: normal 8px/12px var(--font-family);
+  
+  /* Colors */
+  --color-primary: #DC0A2D;
+  --color-background: #f4f4f4;
+  --color-white: #ffffff;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #888;
+  --color-text-muted: #7f8c8d;
+  --color-border: #ddd;
+  --color-error: #e74c3c;
+  
+  /* Effects - Shadows */
+  --shadow-inner-2dp: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-drop-2dp: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-drop-6dp: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-hover: rgba(0, 0, 0, 0.15);
+  
+  /* Spacing */
+  --spacing-xs: 0.2rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 2.5rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.2rem;
+  --radius-xl: 2rem;
+  --radius-full: 50%;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}

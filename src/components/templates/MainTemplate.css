@@ -1,0 +1,24 @@
+/* ===== MAIN TEMPLATE COMPONENT ===== */
+.main-template {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+.header {
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+  color: var(--color-white);
+  box-shadow: var(--shadow-drop-2dp);
+}
+
+.logo {
+  margin-right: var(--spacing-md);
+}
+
+.title {
+  font: var(--text-headline-bold);
+  margin: 0;
+}

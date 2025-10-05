@@ -1,0 +1,11 @@
+/* ===== SHARED TYPE BADGE COMPONENT ===== */
+.type-badge {
+  color: white;
+  padding: 0.4rem 1.2rem;
+  border-radius: 1rem;
+  font: var(--text-body-3-regular);
+  font-weight: 600;
+  text-transform: capitalize;
+  text-shadow: var(--shadow-inner-2dp);
+  box-shadow: var(--shadow-drop-2dp);
+}

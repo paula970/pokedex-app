@@ -1,0 +1,35 @@
+/* ===== FAVORITES FILTER COMPONENT ===== */
+.favorites-active,
+.favorites-inactive {
+  border: 2px solid;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font: var(--text-subtitle-1-bold);
+  width: auto;
+  height: auto;
+  gap: var(--spacing-xs);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-drop-2dp);
+}
+
+.favorites-inactive {
+  background: var(--color-white);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.favorites-inactive:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.favorites-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.favorites-active:hover {
+  background: #b52729;
+  border-color: #b52729;
+}
