@@ -11,6 +11,7 @@
   --color-text-secondary: #888;
   --color-text-muted: #7f8c8d;
   --color-border: #ddd;
+  --color-error: #e74c3c;
   --color-shadow: rgba(0, 0, 0, 0.08);
   --color-shadow-hover: rgba(0, 0, 0, 0.16);
   
@@ -75,6 +76,32 @@ body, .main-template {
   flex: 1;
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.validation-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-error, #e74c3c);
+  color: var(--color-white);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.75rem;
+  border-radius: 0 0 var(--spacing-xs) var(--spacing-xs);
+  z-index: 10;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .input-icon {
