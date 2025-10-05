@@ -10,6 +10,7 @@ import {
   setSearch as setSearchAction,
   setSelectedType as setSelectedTypeAction,
   setSortBy as setSortByAction,
+  setShowOnlyFavorites as setShowOnlyFavoritesAction,
   setHasMore,
   resetPokemons
 } from '../store/pokemonSlice';
@@ -19,7 +20,8 @@ const PAGE_SIZE = 20;
 
 export function usePokemon() {
   const dispatch = useAppDispatch();
-  const { allPokemons, search, selectedType, sortBy, loading, error, hasMore } = useAppSelector(state => state.pokemon);
+  const { allPokemons, search, selectedType, sortBy, showOnlyFavorites, loading, error, hasMore } = useAppSelector(state => state.pokemon);
+  const favorites = useAppSelector(state => state.favorites);
 
   // Apollo query variables (memoized)
   const variables = useMemo(() => {
@@ -117,9 +119,16 @@ export function usePokemon() {
     return Array.from(typeSet).sort();
   }, [allPokemons]);
 
-  // No need for local filtering - everything is handled by GraphQL query
-  // The data comes already filtered and sorted from the server
-  const filteredPokemons = allPokemons;
+  // Apply favorites filter locally (GraphQL handles search and type filters)
+  const filteredPokemons = useMemo(() => {
+    if (!showOnlyFavorites) {
+      return allPokemons;
+    }
+    
+    // Filter to show only favorites
+    const favoriteIds = favorites.favoritePokemons.map(fav => fav.id);
+    return allPokemons.filter(pokemon => favoriteIds.includes(pokemon.id));
+  }, [allPokemons, showOnlyFavorites, favorites.favoritePokemons]);
 
   // Actions
   const setSearch = useCallback((value: string) => {
@@ -143,6 +152,10 @@ export function usePokemon() {
     }
   }, [dispatch, sortBy]);
 
+  const setShowOnlyFavorites = useCallback((showFavorites: boolean) => {
+    dispatch(setShowOnlyFavoritesAction(showFavorites));
+  }, [dispatch]);
+
   return {
     // Data
     pokemons: filteredPokemons,
@@ -156,11 +169,13 @@ export function usePokemon() {
     search,
     selectedType,
     sortBy,
+    showOnlyFavorites,
     
     // Actions
     setSearch,
     setSelectedType,
     setSortBy,
+    setShowOnlyFavorites,
     loadMore,
   };
 }

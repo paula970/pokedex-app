@@ -3,6 +3,7 @@ import { usePokemon } from "../hooks/usePokemon";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import SearchBar from "../components/molecules/SearchBar";
 import TypeFilter from "../components/molecules/TypeFilter";
+import FavoritesFilter from "../components/molecules/FavoritesFilter";
 import PokemonGrid from "../components/organisms/PokemonGrid";
 import MainTemplate from "../components/templates/MainTemplate";
 import PokeballIcon from "../assets/icons/pokeball.svg";
@@ -28,11 +29,12 @@ const HomePage: React.FC = () => {
         <img src={PokeballIcon} alt="Pokeball" className="logo" style={{ width: 40, height: 40 }} />
         <h1 className="title" style={{ margin: 0 }}>Pokédex</h1>
       </div>
-      <div style={{ flex: 1, minWidth: 200, maxWidth: 600, display: "flex", gap: 12 }}>
-        <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minWidth: 200, maxWidth: 600, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <div style={{ flex: 1, minWidth: 200 }}>
           <SearchBar />
         </div>
         <TypeFilter />
+        <FavoritesFilter />
       </div>
     </header>
   );

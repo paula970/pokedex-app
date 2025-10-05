@@ -6,6 +6,7 @@ interface PokemonState {
   search: string;
   selectedType: string;
   sortBy: SortBy;
+  showOnlyFavorites: boolean;
   loading: boolean;
   error: string | null;
   hasMore: boolean;
@@ -16,6 +17,7 @@ const initialState: PokemonState = {
   search: '',
   selectedType: '',
   sortBy: 'name',
+  showOnlyFavorites: false,
   loading: false,
   error: null,
   hasMore: true,
@@ -47,6 +49,9 @@ const pokemonSlice = createSlice({
     setSortBy: (state, action: PayloadAction<SortBy>) => {
       state.sortBy = action.payload;
     },
+    setShowOnlyFavorites: (state, action: PayloadAction<boolean>) => {
+      state.showOnlyFavorites = action.payload;
+    },
     setHasMore: (state, action: PayloadAction<boolean>) => {
       state.hasMore = action.payload;
     },
@@ -64,6 +69,7 @@ export const {
   setSearch,
   setSelectedType,
   setSortBy,
+  setShowOnlyFavorites,
   setHasMore,
   resetPokemons,
 } = pokemonSlice.actions;
