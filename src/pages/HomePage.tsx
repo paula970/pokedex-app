@@ -1,4 +1,3 @@
-import React from "react";
 import { usePokemon } from "../hooks/usePokemon";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import SearchBar from "../components/molecules/SearchBar";
@@ -8,13 +7,13 @@ import PokemonGrid from "../components/organisms/PokemonGrid";
 import MainTemplate from "../components/templates/MainTemplate";
 import PokeballIcon from "../assets/icons/pokeball.svg";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const {
-    pokemons,
-    loading,
-    error,
-    loadMore,
-    hasMore,
+    pokemons, // The list of Pokémon to display
+    loading,  // Is it loading more Pokémon? (true/false)
+    error,    // Did an error occur?
+    loadMore, // The function we should call to load more Pokémon
+    hasMore,  // Are there more Pokémon to load? (true/false)
   } = usePokemon();
 
   const header = (

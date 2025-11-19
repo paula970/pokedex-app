@@ -1,4 +1,3 @@
-import React from 'react';
 import TypesList from '../molecules/TypesList';
 import PhysicalStats from '../molecules/PhysicalStats';
 
@@ -12,7 +11,7 @@ interface AboutSectionProps {
   className?: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({
+const AboutSection = ({
   types,
   weight,
   height,
@@ -20,7 +19,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   description,
   titleColor,
   className = ''
-}) => {
+}: AboutSectionProps) => {
   return (
     <>
       {/* Types */}

@@ -1,4 +1,5 @@
-import React from 'react';
+// physical statistics
+
 import StatIcon from '../atoms/StatIcon';
 
 interface PhysicalStatProps {
@@ -9,13 +10,13 @@ interface PhysicalStatProps {
   className?: string;
 }
 
-const PhysicalStat: React.FC<PhysicalStatProps> = ({ 
+const PhysicalStat = ({ 
   iconSrc, 
   iconAlt, 
   value, 
   label, 
   className = '' 
-}) => {
+}: PhysicalStatProps) => {
   return (
     <div className={`stat-item ${className}`}>
       <div className="stat-value">

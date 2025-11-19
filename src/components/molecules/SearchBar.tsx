@@ -5,7 +5,7 @@ import { usePokemon } from "../../hooks/usePokemon";
 import { validatePokemonSearch, sanitizeSearchInput } from "../../utils/validation";
 import SearchIcon from "../../assets/icons/search.svg";
 
-const SearchBar: React.FC = () => {
+const SearchBar = () => {
   const { search, setSearch, sortBy, setSortBy } = usePokemon();
   const [validationError, setValidationError] = useState<string>('');
   const [inputValue, setInputValue] = useState(search);

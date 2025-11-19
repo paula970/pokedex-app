@@ -1,4 +1,3 @@
-import React from 'react';
 import BaseStatsList from '../molecules/BaseStatsList';
 
 interface StatsSectionProps {
@@ -8,12 +7,12 @@ interface StatsSectionProps {
   className?: string;
 }
 
-const StatsSection: React.FC<StatsSectionProps> = ({
+const StatsSection = ({
   stats,
   titleColor,
   backgroundColor,
   className = ''
-}) => {
+}: StatsSectionProps) => {
   return (
     <section className={`pokemon-stats ${className}`}>
       <h2 style={{ color: titleColor }}>Base Stats</h2>

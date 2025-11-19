@@ -1,4 +1,5 @@
-import React from 'react';
+// base statistics row
+
 import StatBar from '../atoms/StatBar';
 
 interface BaseStatRowProps {
@@ -8,12 +9,12 @@ interface BaseStatRowProps {
   className?: string;
 }
 
-const BaseStatRow: React.FC<BaseStatRowProps> = ({ 
+const BaseStatRow = ({ 
   statName, 
   statValue, 
   backgroundColor, 
   className = '' 
-}) => {
+}: BaseStatRowProps) => {
   return (
     <div className={`stat-row ${className}`}>
       <span className="stat-name" style={{ color: backgroundColor }}>

@@ -4,7 +4,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
 }
 
-const Input: React.FC<InputProps> = ({ icon, ...props }) => (
+const Input = ({ icon, ...props }: InputProps) => (
   <div className="input-wrapper">
     {icon && <span className="input-icon">{icon}</span>}
     <input className="input" {...props} />

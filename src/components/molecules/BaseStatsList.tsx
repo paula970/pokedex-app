@@ -1,4 +1,3 @@
-import React from 'react';
 import BaseStatRow from './BaseStatRow';
 
 interface BaseStatsListProps {
@@ -7,11 +6,11 @@ interface BaseStatsListProps {
   className?: string;
 }
 
-const BaseStatsList: React.FC<BaseStatsListProps> = ({ 
+const BaseStatsList = ({ 
   stats, 
   backgroundColor, 
   className = '' 
-}) => {
+}: BaseStatsListProps) => {
   return (
     <div className={`stats-list ${className}`}>
       {stats.map((statData, index) => {

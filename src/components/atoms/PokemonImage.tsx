@@ -1,12 +1,10 @@
-import React from 'react';
-
 interface PokemonImageProps {
   id: number;
   name: string;
   className?: string;
 }
 
-const PokemonImage: React.FC<PokemonImageProps> = ({ id, name, className }) => {
+const PokemonImage = ({ id, name, className }: PokemonImageProps) => {
   const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
   return (
     <img

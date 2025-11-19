@@ -1,12 +1,10 @@
-import React from 'react';
-
 interface StatIconProps {
   src: string;
   alt: string;
   className?: string;
 }
 
-const StatIcon: React.FC<StatIconProps> = ({ src, alt, className = '' }) => {
+const StatIcon = ({ src, alt, className = '' }: StatIconProps) => {
   return (
     <img 
       src={src} 

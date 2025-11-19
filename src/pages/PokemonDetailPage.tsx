@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { usePokemonDetail } from '../hooks/usePokemonDetail';
 import { TYPE_COLORS } from '../constants/typeColors';
@@ -14,7 +13,7 @@ const getTypeColor = (types: Array<{ type: { name: string } }>): string => {
   return TYPE_COLORS[primaryType] || TYPE_COLORS.normal;
 };
 
-const PokemonDetailPage: React.FC = () => {
+const PokemonDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const pokemonId = id ? parseInt(id, 10) : 0;
   const { pokemon, loading, error } = usePokemonDetail(pokemonId);

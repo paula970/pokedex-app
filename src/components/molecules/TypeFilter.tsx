@@ -1,7 +1,15 @@
-import React from 'react';
 import { usePokemon } from '../../hooks/usePokemon';
 
-const TypeFilter: React.FC = () => {
+const TypeFilter = () => {
+  /*
+selectedType: The value of the currently active filter (e.g., "fire").
+
+setSelectedType: The function to change that filter (e.g., setSelectedType("water")).
+
+availableTypes: The list of all available types (e.g., ["fire", "water", "grass", etc.]) for constructing menu options.
+loading: A boolean (true or false) indicating whether the application is loading data.
+
+*/
   const { selectedType, setSelectedType, availableTypes, loading } = usePokemon();
 
   if (loading) {

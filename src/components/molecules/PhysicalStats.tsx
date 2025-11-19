@@ -1,4 +1,3 @@
-import React from 'react';
 import PhysicalStat from './PhysicalStat';
 import weightIcon from '../../assets/icons/weight.svg';
 import straightenIcon from '../../assets/icons/straighten.svg';
@@ -10,12 +9,12 @@ interface PhysicalStatsProps {
   className?: string;
 }
 
-const PhysicalStats: React.FC<PhysicalStatsProps> = ({ 
+const PhysicalStats = ({ 
   weight, 
   height, 
   abilities, 
   className = '' 
-}) => {
+}: PhysicalStatsProps) => {
   const weightKg = (weight / 10).toFixed(1);
   const heightM = (height / 10).toFixed(1);
   const abilitiesText = abilities.map(a => a.ability.name).join(', ');

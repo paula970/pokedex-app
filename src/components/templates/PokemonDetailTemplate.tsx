@@ -41,7 +41,7 @@ interface PokemonDetailTemplateProps {
   className?: string;
 }
 
-const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
+const PokemonDetailTemplate = ({
   pokemonName,
   pokemonNumber,
   pokemonImageUrl,
@@ -51,7 +51,7 @@ const PokemonDetailTemplate: React.FC<PokemonDetailTemplateProps> = ({
   aboutSection,
   statsSection,
   className = ''
-}) => {
+}: PokemonDetailTemplateProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
   
   const handleFavoriteClick = (e: React.MouseEvent) => {

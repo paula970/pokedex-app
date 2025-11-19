@@ -9,7 +9,7 @@ interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
-const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
+const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   const { isFavorite, toggleFavorite } = useFavorites();
   const paddedId = pokemon.id.toString().padStart(3, "0");
   const nameCapitalized = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);

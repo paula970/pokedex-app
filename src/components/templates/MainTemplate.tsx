@@ -6,11 +6,11 @@ interface MainTemplateProps {
   content: React.ReactNode;
 }
 
-const MainTemplate: React.FC<MainTemplateProps> = ({
+const MainTemplate = ({
   header,
   searchBar,
   content,
-}) => (
+}: MainTemplateProps) => (
   <div className="main-template">
     {header}
     {searchBar}

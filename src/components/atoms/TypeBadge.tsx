@@ -1,12 +1,11 @@
-import React from 'react';
-
+// bubble of type or types
 interface TypeBadgeProps {
   type: string;
   backgroundColor: string;
   className?: string;
 }
 
-const TypeBadge: React.FC<TypeBadgeProps> = ({ type, backgroundColor, className = '' }) => {
+const TypeBadge = ({ type, backgroundColor, className = '' }: TypeBadgeProps) => {
   return (
     <span 
       className={`type-badge ${className}`}

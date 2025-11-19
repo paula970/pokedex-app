@@ -1,4 +1,3 @@
-import React from 'react';
 import TypeBadge from '../atoms/TypeBadge';
 import { TYPE_COLORS } from '../../constants/typeColors';
 
@@ -12,7 +11,7 @@ const getTypeColor = (typeName: string): string => {
   return TYPE_COLORS[typeName.toLowerCase()] || TYPE_COLORS.normal;
 };
 
-const TypesList: React.FC<TypesListProps> = ({ types, className = '' }) => {
+const TypesList = ({ types, className = '' }: TypesListProps) => {
   return (
     <div className={`pokemon-types ${className}`}>
       {types.map((typeData, index) => (

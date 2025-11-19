@@ -1,4 +1,3 @@
-import React from "react";
 import type { Pokemon } from "../../types";
 import PokemonCard from "../molecules/PokemonCard";
 
@@ -6,7 +5,7 @@ interface PokemonGridProps {
   pokemons: Pokemon[];
 }
 
-const PokemonGrid: React.FC<PokemonGridProps> = ({ pokemons }) => {
+const PokemonGrid = ({ pokemons }: PokemonGridProps) => {
   if (!pokemons.length) {
     return <p style={{ textAlign: "center", marginTop: "2rem" }}>No Pokémon found.</p>;
   }

@@ -1,8 +1,7 @@
-import React from 'react';
 import { usePokemon } from '../../hooks/usePokemon';
 import Button from '../atoms/Button';
 
-const FavoritesFilter: React.FC = () => {
+const FavoritesFilter = () => {
   const { showOnlyFavorites, setShowOnlyFavorites } = usePokemon();
 
   return (

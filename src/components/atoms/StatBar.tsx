@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface StatBarProps {
   value: number;
@@ -7,12 +6,12 @@ interface StatBarProps {
   className?: string;
 }
 
-const StatBar: React.FC<StatBarProps> = ({ 
+const StatBar = ({ 
   value, 
   maxValue = 255, 
   backgroundColor, 
   className = '' 
-}) => {
+}: StatBarProps) => {
   const percentage = Math.min((value / maxValue) * 100, 100);
 
   return (
