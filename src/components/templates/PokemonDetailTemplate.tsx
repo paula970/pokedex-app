@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import pokeballBgIcon from '../../assets/icons/pokeball_bg.svg';
-import Button from '../atoms/Button';
-import { useFavorites } from '../../hooks/useFavorites';
+import FavoriteToggleButton from "../molecules/FavoriteToggleButton";
 
 // Generation icons
 import generationI from '../../assets/icons/generation-i.svg';
@@ -52,13 +51,7 @@ const PokemonDetailTemplate = ({
   statsSection,
   className = ''
 }: PokemonDetailTemplateProps) => {
-  const { isFavorite, toggleFavorite } = useFavorites();
   
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleFavorite(pokemon);
-  };
   return (
     <div className={`pokemon-detail-page ${className}`}>
       <div className="pokemon-detail-container">
@@ -89,14 +82,10 @@ const PokemonDetailTemplate = ({
                   />
                 )}
               </div>
-              <Button 
-                onClick={handleFavoriteClick} 
-                className={`detail-favorite-button ${isFavorite(pokemon.id) ? 'favorite-active' : ''}`}
-                aria-label={isFavorite(pokemon.id) ? 'Remove from favorites' : 'Add to favorites'}
-                title={isFavorite(pokemon.id) ? 'Remove from favorites' : 'Add to favorites'}
-              >
-                {isFavorite(pokemon.id) ? '⭐' : '☆'}
-              </Button>
+              <FavoriteToggleButton 
+                pokemon={pokemon} 
+                className="detail-favorite-button"
+              />
             </div>
           </header>
 
